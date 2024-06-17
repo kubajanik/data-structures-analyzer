@@ -1,17 +1,17 @@
 import ReactFlow, {
   Background,
   DefaultEdgeOptions,
-  Edge,
   MarkerType,
-  Node,
   NodeTypes,
+  Panel,
 } from "reactflow"
 import "reactflow/dist/style.css"
 
-import { Node as CustomNode } from "../node"
+import { ListNode } from "../list-node"
+import { VisualisationItems } from "../../../server/types"
 
 const nodeTypes: NodeTypes = {
-  node: CustomNode,
+  "list-node": ListNode,
 }
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
@@ -28,15 +28,15 @@ const defaultEdgeOptions: DefaultEdgeOptions = {
 }
 
 interface VisualizationCanvasProps {
-  data: {
-    nodes: Node[]
-    edges: Edge[]
-  }
+  visualisationItems: VisualisationItems
 }
 
 export const VisualizationCanvas = ({
-  data: { nodes, edges },
+  visualisationItems,
 }: VisualizationCanvasProps) => {
+  const { dataStructures, primitives } = visualisationItems
+  const { nodes, edges } = dataStructures[0]
+
   return (
     <div className="">
       <ReactFlow
@@ -47,6 +47,16 @@ export const VisualizationCanvas = ({
         fitView
       >
         <Background />
+
+        <Panel position="top-right">
+          <ul>
+            {primitives.map(({ name, value }) => (
+              <li key={name}>
+                {name}: {value}
+              </li>
+            ))}
+          </ul>
+        </Panel>
       </ReactFlow>
     </div>
   )
