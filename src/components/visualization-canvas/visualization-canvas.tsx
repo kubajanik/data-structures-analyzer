@@ -1,5 +1,4 @@
 import ReactFlow, {
-  Background,
   DefaultEdgeOptions,
   MarkerType,
   NodeTypes,
@@ -9,6 +8,7 @@ import "reactflow/dist/style.css"
 
 import { ListNode } from "../list-node"
 import { VisualisationItems } from "../../../server/types"
+import { VariablesTable } from "../variables-table"
 
 const nodeTypes: NodeTypes = {
   "list-node": ListNode,
@@ -38,7 +38,7 @@ export const VisualizationCanvas = ({
   const { nodes, edges } = dataStructures[0]
 
   return (
-    <div className="">
+    <div className="border border-neutral-100 stroke">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -46,16 +46,8 @@ export const VisualizationCanvas = ({
         defaultEdgeOptions={defaultEdgeOptions}
         fitView
       >
-        <Background />
-
         <Panel position="top-right">
-          <ul>
-            {primitives.map(({ name, value }) => (
-              <li key={name}>
-                {name}: {value}
-              </li>
-            ))}
-          </ul>
+          <VariablesTable primitives={primitives} />
         </Panel>
       </ReactFlow>
     </div>
