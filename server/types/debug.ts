@@ -25,9 +25,14 @@ export interface DataStructureVisualisation {
   edges: VisualisationEdge[]
 }
 
+export interface PrimitiveVariable {
+  name: string
+  value?: string
+}
+
 export interface VisualisationItems {
   dataStructures: DataStructureVisualisation[]
-  primitives: { name: string; value?: string }[]
+  primitives: PrimitiveVariable[]
 }
 
 export interface DebugStep {

@@ -7,14 +7,14 @@ export const ListNode = ({
     <>
       <Handle type="source" position={Position.Right} className="opacity-0" />
 
-      <div className="relative grid place-content-center size-16 bg-blue-400 rounded-lg text-blue-50 text-lg ">
+      <div className="relative grid place-content-center size-16 bg-blue-400 shadow-md rounded-lg text-blue-50 text-lg">
         {data.value}
 
         <div className="absolute bottom-16 left-0 flex flex-col gap-2 w-16 mb-2">
           {data.pointers?.map((pointer) => (
             <div
               key={pointer}
-              className="bg-neutral-300 text-neutral-500 py-0.5 text-xs text-center rounded-md"
+              className="bg-neutral-100 text-neutral-500 shadow-md py-0.5 text-xs text-center rounded-md"
             >
               {pointer}
             </div>

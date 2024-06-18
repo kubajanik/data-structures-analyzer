@@ -11,6 +11,8 @@ import {
   VisualisationNode,
 } from "../types"
 
+import { highlightSourceCode } from "./highlight"
+
 function isPrimitive(value: unknown): value is Primitive {
   if (typeof value == "object" || typeof value == "function") {
     return false
@@ -103,7 +105,7 @@ export function transformDebugResult(
   })
 
   return {
-    sourceCode: debugResult.sourceCode,
+    sourceCode: highlightSourceCode(debugResult.sourceCode),
     steps,
   }
 }
