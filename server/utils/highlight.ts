@@ -3,7 +3,5 @@ import javascript from "highlight.js/lib/languages/javascript"
 
 highlight.registerLanguage("javascript", javascript)
 
-export const highlightSourceCode = (sourceCode: string): string => {
-  const result = highlight.highlight(sourceCode, { language: "javascript" })
-  return result.value
-}
+export const highlightSourceCode = (sourceCode: string) =>
+  highlight.highlight(sourceCode, { language: "javascript" }).value
