@@ -1,6 +1,8 @@
-export function pushToEnd(list, value) {
+import { ListNode } from "../data-structures/list-node.js"
+
+export function pushToEnd(list, newValue) {
   debugger
-  const newNode = { _type: "list-node", value }
+  const newNode = new ListNode(newValue)
 
   if (list.head == null) {
     list.head = newNode
