@@ -3,6 +3,7 @@ import {
   middleOfList,
   pushToEnd,
   removeDuplicatesFromSorted,
+  nthFromEndTwoPointers,
 } from "./algorithms/index.js"
 import { SinglyLinkedList } from "./data-structures/index.js"
 
@@ -34,6 +35,13 @@ switch (algorithmName) {
     {
       const list = new SinglyLinkedList(["1", "2", "2", "2", "3", "4", "5"])
       removeDuplicatesFromSorted(list)
+    }
+    break
+
+  case "nth-from-end-two-pointers":
+    {
+      const list = new SinglyLinkedList(["1", "2", "3", "4", "5", "6"])
+      nthFromEndTwoPointers(list, 3)
     }
     break
 }

@@ -1,26 +1,10 @@
-import { useEffect, useState } from "react"
+import useSWR, { SWRResponse } from "swr"
 
 import { DebugResult } from "../../server/types"
 
-export const useDebugAlgorithm = (algorithmName: string) => {
-  const [data, setData] = useState<DebugResult>()
-  const [status, setStatus] = useState<"loading" | "success" | "error">(
-    "loading"
-  )
+const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
-  useEffect(() => {
-    setStatus("loading")
-
-    fetch(`http://localhost:8080/debug-algorithm/${algorithmName}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setData(res)
-        setStatus("success")
-      })
-      .catch(() => {
-        setStatus("error")
-      })
-  }, [algorithmName])
-
-  return { data, status }
-}
+export const useDebugAlgorithm = (
+  algorithmName: string | null
+): SWRResponse<DebugResult> =>
+  useSWR(algorithmName ? `http://localhost:8080/debug-algorithm/${algorithmName}` : null, fetcher, { })
