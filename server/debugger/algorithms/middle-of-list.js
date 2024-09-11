@@ -8,5 +8,5 @@ export function middleOfList(list) {
     slow = slow?.next
   }
 
-  return slow?.value
+  return slow
 }
