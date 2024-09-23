@@ -10,7 +10,7 @@ interface Props {
 export const CodeViewer = ({ sourceCode, currentLine }: Props) => {
   return (
     <div className="h-full relative border border-neutral-100 border-r-0">
-      <pre className="absolute top-0 w-full p-4 text-sm z-10 overflow-auto">
+      <pre className="absolute top-0 w-full p-4 text-sm overflow-auto">
         <code dangerouslySetInnerHTML={{ __html: sourceCode }} />
       </pre>
 
