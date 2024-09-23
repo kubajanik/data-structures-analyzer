@@ -6,8 +6,9 @@ import ReactFlow, {
 } from "reactflow"
 import "reactflow/dist/style.css"
 
+import { VisualisationItems } from "types"
+
 import { ListNode } from "../list-node"
-import { VisualisationItems } from "../../../server/types"
 import { VariablesTable } from "../variables-table"
 
 const nodeTypes: NodeTypes = {

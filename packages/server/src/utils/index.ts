@@ -9,7 +9,7 @@ import {
   VisualisationEdge,
   VisualisationItems,
   VisualisationNode,
-} from "../types"
+} from "types"
 
 import { highlightSourceCode } from "./highlight"
 

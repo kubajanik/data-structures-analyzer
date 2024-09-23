@@ -1,7 +1,7 @@
 import childProcess from "node:child_process"
 import { readFile } from "node:fs/promises"
 
-import { InitialDebugResult, InitialDebugStep } from "../types"
+import { InitialDebugResult, InitialDebugStep } from "types"
 
 import {
   addTypeofGuardsToVariables,
@@ -34,7 +34,7 @@ export const debugAlgorithm = async (
       }
 
       const isDebuggingEnded = data.includes(
-        "break in server/debugger/run-algorithm"
+        "break in src/debugger/run-algorithm"
       )
       if (isDebuggingEnded) {
         debugProcess.kill()
