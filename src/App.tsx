@@ -5,6 +5,7 @@ import {
   Button,
   CodeViewer,
   Header,
+  SplitView,
   VisualizationCanvas,
 } from "./components"
 
@@ -20,22 +21,28 @@ export default function App() {
     <main className="h-screen flex flex-col font-mono">
       <Header />
 
-      <div className="h-full grid grid-cols-12 border-neutral-200">
+      <div className="h-full flex border-neutral-200">
         <AlogrithmsMenu selectedAlgorithm={searchParams.get("algorithm")} />
 
         {debugResult ? (
           <>
-            <CodeViewer
-              sourceCode={debugResult.sourceCode}
-              currentLine={debugResult.steps[currentStepIndex].line}
-            />
-            <VisualizationCanvas
-              visualisationItems={
-                debugResult.steps[currentStepIndex].visualisationItems
+            <SplitView
+              leftComponent={
+                <CodeViewer
+                  sourceCode={debugResult.sourceCode}
+                  currentLine={debugResult.steps[currentStepIndex].line}
+                />
+              }
+              rightComponent={
+                <VisualizationCanvas
+                  visualisationItems={
+                    debugResult.steps[currentStepIndex].visualisationItems
+                  }
+                />
               }
             />
 
-            <div className="fixed bottom-8 left-1/2 flex gap-4 -translate-x-1/2">
+            <div className="fixed bottom-8 left-1/2 flex gap-4">
               <Button onClick={() => setCurrentStepIndex(0)}>Reset</Button>
               <Button
                 onClick={() =>

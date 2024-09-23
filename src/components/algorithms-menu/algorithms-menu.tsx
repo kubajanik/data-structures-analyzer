@@ -15,7 +15,7 @@ interface AlogrithmsMenuProps {
 
 export const AlogrithmsMenu = ({ selectedAlgorithm }: AlogrithmsMenuProps) => {
   return (
-    <nav className="border-r border-neutral-100 col-span-2 ">
+    <nav className="border-r border-neutral-100">
       <ul>
         {algorithms.map((algorithm) => (
           <li
