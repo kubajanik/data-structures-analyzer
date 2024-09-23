@@ -5,6 +5,7 @@
       "persistent": true
     },
     "type-check": {
+      "cache": false,
       "outputs": []
     },
     "unit-test": {},
