@@ -10,19 +10,19 @@ const algorithms = [
 ]
 
 interface AlogrithmsMenuProps {
-  selectedAlgorithm: string | null
+  selectedAlgorithm?: string
 }
 
 export const AlogrithmsMenu = ({ selectedAlgorithm }: AlogrithmsMenuProps) => {
   return (
-    <nav className="border-r border-neutral-100">
+    <nav className="flex-shrink-0 border-r border-neutral-100">
       <ul>
         {algorithms.map((algorithm) => (
           <li
             key={algorithm.key}
-            className={`text-sm text-neutral-500 py-1 px-3 rounded-lg mt-2 ${algorithm.key === selectedAlgorithm ? "bg-neutral-100 shadow-sm " : ""}`}
+            className={`text-xs text-neutral-500 py-1 px-3 rounded-sm mt-2 ${algorithm.key === selectedAlgorithm ? "bg-neutral-100 shadow-sm " : ""}`}
           >
-            <a href={`/?algorithm=${algorithm.key}`}>{algorithm.name}</a>
+            <a href={`#${algorithm.key}`}>{algorithm.name}</a>
           </li>
         ))}
       </ul>

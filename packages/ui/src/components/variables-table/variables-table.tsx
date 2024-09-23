@@ -11,7 +11,7 @@ export const VariablesTable = ({ primitives }: VariablesTableProps) => {
 
   return (
     <div className="rounded-lg overflow-hidden shadow-md">
-      <table className="text-sm">
+      <table className="text-xs">
         <thead>
           <tr className="bg-blue-400 text-blue-50">
             <th className="px-4 py-2 font-normal">VARIABLE</th>

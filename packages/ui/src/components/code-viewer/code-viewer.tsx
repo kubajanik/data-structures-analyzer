@@ -10,7 +10,7 @@ interface Props {
 export const CodeViewer = ({ sourceCode, currentLine }: Props) => {
   return (
     <div className="h-full relative border border-neutral-100 border-r-0">
-      <pre className="absolute top-0 w-full p-4 text-sm overflow-auto">
+      <pre className="absolute top-0 w-full p-4 text-xs overflow-auto">
         <code dangerouslySetInnerHTML={{ __html: sourceCode }} />
       </pre>
 
@@ -23,7 +23,7 @@ const LineHighlight = ({ sourceCode, currentLine }: Props) => {
   const lineNumbers = getLineNumbers(sourceCode)
 
   return (
-    <pre className="pointer-events-none select-none py-4 text-sm">
+    <pre className="pointer-events-none select-none py-4 text-xs">
       {lineNumbers.map((line) => (
         <Fragment key={line}>
           <span
