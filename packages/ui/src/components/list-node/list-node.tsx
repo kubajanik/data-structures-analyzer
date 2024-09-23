@@ -7,7 +7,7 @@ export const ListNode = ({
     <>
       <Handle type="source" position={Position.Right} className="opacity-0" />
 
-      <div className="relative grid place-content-center size-16 bg-blue-400 shadow-md rounded-lg text-blue-50 text-lg">
+      <div className="relative grid place-content-center size-16 bg-blue-400 shadow-md rounded-lg text-blue-50 text-md">
         {data.value}
 
         <div className="absolute bottom-16 left-0 flex flex-col gap-2 w-16 mb-2">

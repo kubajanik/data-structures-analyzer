@@ -2,68 +2,56 @@ import { useState } from "react"
 
 import {
   AlogrithmsMenu,
-  Button,
   CodeViewer,
   Header,
   SplitView,
+  StepsPanel,
   VisualizationCanvas,
 } from "./components"
 
-import { useDebugAlgorithm } from "./hooks/use-debug-algorithm"
+import { useAlgorithmName, useDebugAlgorithm } from "./hooks"
 
 export default function App() {
-  const [currentStepIndex, setCurrentStepIndex] = useState(0)
-  const searchParams = new URLSearchParams(window.location.search)
+  const [currentStep, setCurrentStep] = useState(0)
 
-  const { data: debugResult } = useDebugAlgorithm(searchParams.get("algorithm"));
+  const algorithmName = useAlgorithmName()
+  const debugResult = useDebugAlgorithm(algorithmName)
 
   return (
     <main className="h-screen flex flex-col font-mono">
       <Header />
 
       <div className="h-full flex border-neutral-200">
-        <AlogrithmsMenu selectedAlgorithm={searchParams.get("algorithm")} />
+        <AlogrithmsMenu selectedAlgorithm={algorithmName} />
 
         {debugResult ? (
-          <>
+          <div className="flex w-full relative">
             <SplitView
               leftComponent={
                 <CodeViewer
                   sourceCode={debugResult.sourceCode}
-                  currentLine={debugResult.steps[currentStepIndex].line}
+                  currentLine={debugResult.steps[currentStep].line}
                 />
               }
               rightComponent={
                 <VisualizationCanvas
                   visualisationItems={
-                    debugResult.steps[currentStepIndex].visualisationItems
+                    debugResult.steps[currentStep].visualisationItems
                   }
                 />
               }
             />
 
-            <div className="fixed bottom-8 left-1/2 flex gap-4">
-              <Button onClick={() => setCurrentStepIndex(0)}>Reset</Button>
-              <Button
-                onClick={() =>
-                  setCurrentStepIndex((step) => (step !== 0 ? step - 1 : step))
-                }
-              >
-                Prev step
-              </Button>
-              <Button
-                onClick={() =>
-                  setCurrentStepIndex((step) =>
-                    step < debugResult.steps.length - 1 ? step + 1 : step
-                  )
-                }
-              >
-                Next step
-              </Button>
-            </div>
-          </>
+            <StepsPanel
+              step={currentStep}
+              stepsCount={debugResult.steps.length}
+              onStepChange={setCurrentStep}
+            />
+          </div>
         ) : (
-          <div className="grid place-items-center col-span-10">Loading...</div>
+          <div className="w-full grid place-items-center">
+            {algorithmName ? "Loading..." : "Pick algorithm"}
+          </div>
         )}
       </div>
     </main>
