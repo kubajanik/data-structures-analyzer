@@ -1,4 +1,4 @@
-import { PrimitiveVariable } from "../../../server/types"
+import { PrimitiveVariable } from "types"
 
 interface VariablesTableProps {
   primitives: PrimitiveVariable[]
