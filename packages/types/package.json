@@ -6,6 +6,7 @@
     "type-check": "tsc"
   },
   "devDependencies": {
-    "typescript": "5.6.2"
+    "typescript": "5.6.2",
+    "reactflow": "11.11.3"
   }
 }
