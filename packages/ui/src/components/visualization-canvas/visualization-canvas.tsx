@@ -10,9 +10,11 @@ import { VisualisationItems } from "types"
 
 import { ListNode } from "../list-node"
 import { VariablesTable } from "../variables-table"
+import { ArrayItem } from "../array-item"
 
 const nodeTypes: NodeTypes = {
   "list-node": ListNode,
+  "array-item": ArrayItem,
 }
 
 const defaultEdgeOptions: DefaultEdgeOptions = {

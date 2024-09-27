@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import {
   AlogrithmsMenu,
@@ -16,6 +16,10 @@ export default function App() {
 
   const algorithmName = useAlgorithmName()
   const debugResult = useDebugAlgorithm(algorithmName)
+
+  useEffect(() => {
+    setCurrentStep(0)
+  }, [algorithmName])
 
   return (
     <main className="h-screen flex flex-col font-mono">

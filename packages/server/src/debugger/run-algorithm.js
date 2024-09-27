@@ -4,6 +4,8 @@ import {
   pushToEnd,
   removeDuplicatesFromSorted,
   nthFromEndTwoPointers,
+  reverseArray,
+  arrayBinarySearch
 } from "./algorithms/index.js"
 import { SinglyLinkedList } from "./data-structures/index.js"
 
@@ -44,4 +46,14 @@ switch (algorithmName) {
       nthFromEndTwoPointers(list, 3)
     }
     break
+  case "array-in-place-reverse": 
+    {
+      reverseArray([1, 2, 3, 4, 5]);
+    }
+    break;
+  case "array-binary-search": 
+    {
+      arrayBinarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 8);
+    }
+    break;
 }

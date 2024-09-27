@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react"
 
 export const useAlgorithmName = () => {
-  const [algorithmName, setAlgorithmName] = useState<string>()
+  const [algorithmName, setAlgorithmName] = useState(getHashValue())
 
   useEffect(() => {
-    const handleHashChange = () =>
-      setAlgorithmName(window.location.hash.replace("#", ""))
+    const handleHashChange = () => setAlgorithmName(getHashValue())
 
     window.addEventListener("hashchange", handleHashChange)
 
@@ -16,3 +15,5 @@ export const useAlgorithmName = () => {
 
   return algorithmName
 }
+
+const getHashValue = () => window.location.hash.replace("#", "")

@@ -16,10 +16,11 @@ export interface InitialDebugResult {
   steps: InitialDebugStep[]
 }
 
-export type VisualisationNode = Node<{ value: string; pointers: string[] }>
+export type VisualisationNode = Node<{ value: string; pointers?: string[] }>
 export type VisualisationEdge = Edge
 
 export interface DataStructureVisualisation {
+  type: string
   name: string
   nodes: VisualisationNode[]
   edges: VisualisationEdge[]

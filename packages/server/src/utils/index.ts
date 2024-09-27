@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto"
+
 import {
   DataStructureVisualisation,
   DebugResult,
@@ -23,7 +25,7 @@ function isPrimitive(value: unknown): value is Primitive {
 
 function prepareSinglyLinkedList(
   list: SinglyLinkedList
-): Omit<DataStructureVisualisation, "name"> {
+): Omit<DataStructureVisualisation, "type" | "name"> {
   const nodes: VisualisationNode[] = []
   const edges: VisualisationEdge[] = []
 
@@ -67,11 +69,45 @@ export function transformDebugResult(
       primitives: [],
     }
 
-    Object.entries(step.variables).map(([name, value]) => {
-      if (isPrimitive(value)) {
-        visualisationItems.primitives.push({
+    const variablesArray = Object.entries(step.variables).map(
+      ([name, value]) => ({ name, value })
+    )
+
+    const primitives = variablesArray
+      .filter((variable) => isPrimitive(variable.value))
+      .map(({ name, value }) => {
+        return {
           name,
           value: value?.toString(),
+        }
+      })
+    visualisationItems.primitives = primitives
+
+    variablesArray.map(({ name, value }) => {
+      if (isPrimitive(value)) {
+        // TODO: remove it
+      } else if (Array.isArray(value)) {
+        const indexVariables = primitives.filter(({ name }) =>
+          /(low|high|mid|opposite|^i$)/i.test(name)
+        )
+
+        const nodes: VisualisationNode[] = value.map((item, index) => ({
+          type: "array-item",
+          id: randomUUID().toString(),
+          data: {
+            value: item,
+            index,
+            pointers: indexVariables
+              .filter(({ value }) => value === `${index}`)
+              .map(({ name }) => name),
+          },
+          position: { x: index * (64 + 4), y: 0 },
+        }))
+        visualisationItems.dataStructures.push({
+          name,
+          type: "array",
+          nodes,
+          edges: [],
         })
       } else {
         const type = value._type
@@ -79,6 +115,7 @@ export function transformDebugResult(
         if (type === "singly-linked-list") {
           visualisationItems.dataStructures.push({
             name,
+            type,
             ...prepareSinglyLinkedList(value),
           })
         } else if (type === "list-node") {
@@ -91,7 +128,7 @@ export function transformDebugResult(
                       ...y,
                       data: {
                         ...y.data,
-                        pointers: [...y.data.pointers, name],
+                        pointers: [...(y.data.pointers ?? []), name],
                       },
                     }
                   : y
