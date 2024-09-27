@@ -7,6 +7,8 @@ const algorithms = [
     key: "remove-duplicates-from-sorted",
   },
   { name: "Nth from end (two pointers)", key: "nth-from-end-two-pointers" },
+  { name: "Array in-place reverse", key: "array-in-place-reverse" },
+  { name: "Array binary search", key: "array-binary-search" },
 ]
 
 interface AlogrithmsMenuProps {
