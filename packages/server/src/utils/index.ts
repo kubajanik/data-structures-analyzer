@@ -7,6 +7,7 @@ import {
   InitialDebugResult,
   ListNode,
   Primitive,
+  PrimitiveVariable,
   SinglyLinkedList,
   VisualisationEdge,
   VisualisationItems,
@@ -14,6 +15,7 @@ import {
 } from "types"
 
 import { highlightSourceCode } from "./highlight"
+import { isVariableUsedInCurrentLine } from "./helpers"
 
 function isPrimitive(value: unknown): value is Primitive {
   if (typeof value == "object" || typeof value == "function") {
@@ -73,12 +75,16 @@ export function transformDebugResult(
       ([name, value]) => ({ name, value })
     )
 
-    const primitives = variablesArray
+    const primitives: PrimitiveVariable[] = variablesArray
       .filter((variable) => isPrimitive(variable.value))
       .map(({ name, value }) => {
         return {
           name,
           value: value?.toString(),
+          isUsedInCurrentLine: isVariableUsedInCurrentLine(
+            step.lineOfCode,
+            name
+          ),
         }
       })
     visualisationItems.primitives = primitives
@@ -88,7 +94,7 @@ export function transformDebugResult(
         // TODO: remove it
       } else if (Array.isArray(value)) {
         const indexVariables = primitives.filter(({ name }) =>
-          /(low|high|mid|opposite|^i$)/i.test(name)
+          /(low|high|mid|opposite|next|leftEdge|^i$)/i.test(name)
         )
 
         const nodes: VisualisationNode[] = value.map((item, index) => ({
@@ -138,7 +144,11 @@ export function transformDebugResult(
       }
     })
 
-    steps.push({ line: step.line, visualisationItems })
+    steps.push({
+      line: step.line,
+      lineOfCode: step.lineOfCode,
+      visualisationItems,
+    })
   })
 
   return {

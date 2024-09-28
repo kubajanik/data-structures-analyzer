@@ -9,6 +9,8 @@ const algorithms = [
   { name: "Nth from end (two pointers)", key: "nth-from-end-two-pointers" },
   { name: "Array in-place reverse", key: "array-in-place-reverse" },
   { name: "Array binary search", key: "array-binary-search" },
+  { name: "Array bubble sort", key: "array-bubble-sort" },
+  { name: "Array max sum", key: "array-max-sum" },
 ]
 
 interface AlogrithmsMenuProps {

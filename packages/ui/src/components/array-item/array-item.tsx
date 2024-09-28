@@ -6,7 +6,7 @@ export const ArrayItem = ({
   return (
     <>
       <div
-        className={`relative grid place-content-center bg-blue-${data.pointers.length === 0 ? "400" : "500"} rounded-lg size-16 text-blue-50 text-md`}
+        className={`relative grid place-content-center ${data.pointers.length === 0 ? "bg-blue-400" : "bg-blue-500"} rounded-lg size-16 text-blue-50 text-md`}
       >
         {data.value}
 

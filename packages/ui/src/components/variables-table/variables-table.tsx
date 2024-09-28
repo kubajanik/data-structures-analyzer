@@ -19,10 +19,10 @@ export const VariablesTable = ({ primitives }: VariablesTableProps) => {
           </tr>
         </thead>
         <tbody>
-          {primitives.map(({ name, value }) => (
+          {primitives.map(({ name, value, isUsedInCurrentLine }) => (
             <tr
               key={name}
-              className="bg-neutral-100 text-neutral-500 text-center"
+              className={`${isUsedInCurrentLine ? "bg-neutral-200" : "bg-neutral-100"} text-neutral-500 text-center`}
             >
               <td className="px-4 py-2">{name}</td>
               <td className="px-4 py-2">{value}</td>

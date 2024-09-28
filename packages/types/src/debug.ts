@@ -8,6 +8,7 @@ export type DataStructureVariable = SinglyLinkedList | ListNode
 
 export interface InitialDebugStep {
   line: number
+  lineOfCode: string
   variables: Record<string, Primitive | DataStructureVariable>
 }
 
@@ -29,6 +30,7 @@ export interface DataStructureVisualisation {
 export interface PrimitiveVariable {
   name: string
   value?: string
+  isUsedInCurrentLine: boolean
 }
 
 export interface VisualisationItems {
@@ -38,6 +40,7 @@ export interface VisualisationItems {
 
 export interface DebugStep {
   line: number
+  lineOfCode: string
   visualisationItems: VisualisationItems
 }
 
