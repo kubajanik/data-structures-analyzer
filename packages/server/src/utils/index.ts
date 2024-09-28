@@ -65,13 +65,20 @@ export function transformDebugResult(
 ): DebugResult {
   const steps: DebugStep[] = []
 
-  debugResult.steps.map((step) => {
+  debugResult.steps.shift()
+
+  debugResult.steps.forEach((currentStep, index) => {
+    const nextStep = debugResult.steps[index + 1]
+    if (!nextStep) {
+      return
+    }
+
     const visualisationItems: VisualisationItems = {
       dataStructures: [],
       primitives: [],
     }
 
-    const variablesArray = Object.entries(step.variables).map(
+    const variablesArray = Object.entries(nextStep.variables).map(
       ([name, value]) => ({ name, value })
     )
 
@@ -82,14 +89,14 @@ export function transformDebugResult(
           name,
           value: value?.toString(),
           isUsedInCurrentLine: isVariableUsedInCurrentLine(
-            step.lineOfCode,
+            currentStep.lineOfCode,
             name
           ),
         }
       })
     visualisationItems.primitives = primitives
 
-    variablesArray.map(({ name, value }) => {
+    variablesArray.forEach(({ name, value }) => {
       if (isPrimitive(value)) {
         // TODO: remove it
       } else if (Array.isArray(value)) {
@@ -145,8 +152,8 @@ export function transformDebugResult(
     })
 
     steps.push({
-      line: step.line,
-      lineOfCode: step.lineOfCode,
+      line: currentStep.line,
+      lineOfCode: currentStep.lineOfCode,
       visualisationItems,
     })
   })
