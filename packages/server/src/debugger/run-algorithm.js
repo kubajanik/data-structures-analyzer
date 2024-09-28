@@ -5,7 +5,9 @@ import {
   removeDuplicatesFromSorted,
   nthFromEndTwoPointers,
   reverseArray,
-  arrayBinarySearch
+  arrayBinarySearch,
+  arrayBubbleSort,
+  arrayMaxSum
 } from "./algorithms/index.js"
 import { SinglyLinkedList } from "./data-structures/index.js"
 
@@ -54,6 +56,16 @@ switch (algorithmName) {
   case "array-binary-search": 
     {
       arrayBinarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 8);
+    }
+    break;
+  case "array-bubble-sort":
+    {
+      arrayBubbleSort([5, 1, 2, 10 , 12, 8, 3, 0]);
+    }
+    break;
+  case "array-max-sum":
+    {
+      arrayMaxSum([5, 2, -1, 0, 3], 3);
     }
     break;
 }

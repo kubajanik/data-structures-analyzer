@@ -25,6 +25,7 @@ export const debugAlgorithm = async (
 
     const steps: InitialDebugStep[] = []
     let line: string = ""
+    let currentLineOfCode: string = ""
 
     debugProcess.stdout?.on("data", (data: string) => {
       const isDebuggingStarted = data.includes("Break on start")
@@ -43,9 +44,11 @@ export const debugAlgorithm = async (
 
       const breakpointMatch = /break in .+algorithms.+js:(\d+)/.exec(data)
       const matchedData = /'data (.+)'/.exec(data)
+      const currentLineMatch = />.*\d+(.*)$/m.exec(data)
 
       if (breakpointMatch) {
         line = breakpointMatch[1]
+        currentLineOfCode = currentLineMatch?.[1] ?? ""
 
         const extractVariablesCommand =
           "exec `data ${JSON.stringify({" +
@@ -57,6 +60,7 @@ export const debugAlgorithm = async (
       if (matchedData) {
         steps.push({
           line: Number(line),
+          lineOfCode: currentLineOfCode,
           variables: JSON.parse(matchedData[1]),
         })
         debugProcess.stdin?.write("next\n")
