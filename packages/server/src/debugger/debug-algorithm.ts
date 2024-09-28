@@ -44,11 +44,11 @@ export const debugAlgorithm = async (
 
       const breakpointMatch = /break in .+algorithms.+js:(\d+)/.exec(data)
       const matchedData = /'data (.+)'/.exec(data)
-      const currentLineMatch = />.*\d+(.*)$/m.exec(data)
+      const currentLineMatch = /> ?\d+(.*)$/m.exec(data)
 
-      if (breakpointMatch) {
+      if (breakpointMatch && currentLineMatch) {
         line = breakpointMatch[1]
-        currentLineOfCode = currentLineMatch?.[1] ?? ""
+        currentLineOfCode = currentLineMatch[1]
 
         const extractVariablesCommand =
           "exec `data ${JSON.stringify({" +
