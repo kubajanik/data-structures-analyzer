@@ -14,14 +14,14 @@ export const ArrayItem = ({
           {data.pointers?.map((pointer) => (
             <div
               key={pointer}
-              className="bg-neutral-100 text-neutral-500 shadow-md py-0.5 text-xs text-center rounded-md"
+              className="bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-300 shadow-md py-0.5 text-xs text-center rounded-md"
             >
               {pointer}
             </div>
           ))}
         </div>
 
-        <div className="absolute -bottom-6 text-neutral-500  text-xs left-1/2 -translate-x-1/2">
+        <div className="absolute -bottom-6 text-neutral-500 dark:text-neutral-300 text-xs left-1/2 -translate-x-1/2">
           {data.index}
         </div>
       </div>

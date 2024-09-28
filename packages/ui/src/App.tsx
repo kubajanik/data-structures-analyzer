@@ -53,7 +53,7 @@ export default function App() {
             />
           </div>
         ) : (
-          <div className="w-full grid place-items-center">
+          <div className="w-full grid place-items-center bg-neutral-50 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-300">
             {algorithmName ? "Loading..." : "Pick algorithm"}
           </div>
         )}

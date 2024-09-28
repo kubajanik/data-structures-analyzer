@@ -19,12 +19,12 @@ interface AlogrithmsMenuProps {
 
 export const AlogrithmsMenu = ({ selectedAlgorithm }: AlogrithmsMenuProps) => {
   return (
-    <nav className="flex-shrink-0 border-r border-neutral-100">
+    <nav className="flex-shrink-0 border-r-2 border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-700">
       <ul>
         {algorithms.map((algorithm) => (
           <li
             key={algorithm.key}
-            className={`text-xs text-neutral-500 py-1 px-3 rounded-sm mt-2 ${algorithm.key === selectedAlgorithm ? "bg-neutral-100 shadow-sm " : ""}`}
+            className={`text-xs text-neutral-500 dark:text-neutral-300 py-1 px-3 rounded-sm mt-2 ${algorithm.key === selectedAlgorithm ? "bg-neutral-100 dark:bg-neutral-800 shadow-sm " : ""}`}
           >
             <a href={`#${algorithm.key}`}>{algorithm.name}</a>
           </li>

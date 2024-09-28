@@ -14,7 +14,7 @@ export const ListNode = ({
           {data.pointers?.map((pointer) => (
             <div
               key={pointer}
-              className="bg-neutral-100 text-neutral-500 shadow-md py-0.5 text-xs text-center rounded-md"
+              className="bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-300 shadow-md py-0.5 text-xs text-center rounded-md"
             >
               {pointer}
             </div>

@@ -41,7 +41,7 @@ export const VisualizationCanvas = ({
   const { nodes, edges } = dataStructures[0]
 
   return (
-    <div className="h-full border border-neutral-100">
+    <div className="h-full bg-neutral-50 dark:bg-neutral-700">
       <ReactFlow
         nodes={nodes}
         edges={edges}
