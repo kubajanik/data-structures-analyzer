@@ -9,7 +9,7 @@ import {
   arrayBubbleSort,
   arrayMaxSum
 } from "./algorithms/index.js"
-import { SinglyLinkedList } from "./data-structures/index.js"
+import { SinglyLinkedList } from "../data-structures/index.js"
 
 const algorithmName = process.argv[2]
 

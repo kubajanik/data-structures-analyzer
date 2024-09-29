@@ -1,4 +1,4 @@
-import { ListNode } from "../data-structures/list-node.js"
+import { ListNode } from "../../data-structures/list-node.js"
 
 export function pushToEnd(list, newValue) {
   debugger

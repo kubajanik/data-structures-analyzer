@@ -9,18 +9,15 @@ import {
 } from "./utils"
 
 export const debugAlgorithm = async (
-  algorithmName: string
+  algorithmPath: string
 ): Promise<InitialDebugResult> => {
-  const sourceCode = await readFile(
-    `${import.meta.dirname}/algorithms/${algorithmName}.js`,
-    "utf-8"
-  )
+  const sourceCode = await readFile(`${algorithmPath}/algorithm.js`, "utf-8")
   const variables = readVariablesFromSourceCode(sourceCode)
   const variablesWithGuards = addTypeofGuardsToVariables(variables)
 
   return new Promise((resolve) => {
     const debugProcess = childProcess.exec(
-      `node inspect ${import.meta.dirname}/run-algorithm.js ${algorithmName}`
+      `node inspect ${algorithmPath}/run.js`
     )
 
     const steps: InitialDebugStep[] = []
@@ -34,15 +31,13 @@ export const debugAlgorithm = async (
         return
       }
 
-      const isDebuggingEnded = data.includes(
-        "break in src/debugger/run-algorithm"
-      )
+      const isDebuggingEnded = data.includes("run.js")
       if (isDebuggingEnded) {
         debugProcess.kill()
         resolve({ sourceCode, steps })
       }
 
-      const breakpointMatch = /break in .+algorithms.+js:(\d+)/.exec(data)
+      const breakpointMatch = /break in .+algorithm\.js:(\d+)/.exec(data)
       const matchedData = /'data (.+)'/.exec(data)
       const currentLineMatch = /> ?\d+(.*)$/m.exec(data)
 
