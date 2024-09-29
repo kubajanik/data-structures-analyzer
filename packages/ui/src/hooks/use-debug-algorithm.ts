@@ -13,7 +13,7 @@ export const useDebugAlgorithm = (algorithmName?: string) => {
 
       setDebugResult(undefined)
       const data = await fetch(
-        `http://localhost:8080/debug-algorithm/${algorithmName}`
+        `http://localhost:8080/algorithm/${algorithmName}`
       ).then((res) => res.json())
       setDebugResult(data)
     }

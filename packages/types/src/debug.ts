@@ -48,3 +48,8 @@ export interface DebugResult {
   sourceCode: string
   steps: DebugStep[]
 }
+
+export interface AlgorithmData extends DebugResult {
+  name: string
+  category: string
+}
