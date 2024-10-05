@@ -1,4 +1,5 @@
-import ReactFlow, {
+import {
+  ReactFlow,
   DefaultEdgeOptions,
   MarkerType,
   NodeTypes,
@@ -6,7 +7,7 @@ import ReactFlow, {
 } from "reactflow"
 import "reactflow/dist/style.css"
 
-import { VisualisationItems } from "types"
+import { VisualisationItems } from "~/types"
 
 import { ListNode } from "../list-node"
 import { VariablesTable } from "../variables-table"
