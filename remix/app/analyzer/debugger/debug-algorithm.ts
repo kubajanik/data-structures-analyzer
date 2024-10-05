@@ -25,7 +25,6 @@ export const debugAlgorithm = async (
     let currentLineOfCode: string = ""
 
     debugProcess.stdout?.on("data", (data: string) => {
-      // console.log(data)
       const isDebuggingStarted = data.includes("Break on start")
       if (isDebuggingStarted) {
         debugProcess.stdin?.write("cont\n")
