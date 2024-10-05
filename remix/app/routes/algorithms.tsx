@@ -3,7 +3,9 @@ import type { MetaFunction } from "@remix-run/node"
 import { json, Link, Outlet, useLoaderData, useParams } from "@remix-run/react"
 
 import { Header } from "../components"
-import { generateDatabase } from "../analyzer/generate-database"
+
+import { db } from "../utils/db.server"
+import { AlgorithmData } from "../types"
 
 export const meta: MetaFunction = () => {
   return [
@@ -12,14 +14,11 @@ export const meta: MetaFunction = () => {
   ]
 }
 
-const algorithmsDb = await generateDatabase()
-
 export const loader = async () => {
-  const algorithms = algorithmsDb.map(({ id, name }) => ({
-    id,
-    name,
-  }))
-
+  const algorithms = await db
+    .collection<AlgorithmData>("algorithms")
+    .find()
+    .toArray()
   return json({ algorithms })
 }
 

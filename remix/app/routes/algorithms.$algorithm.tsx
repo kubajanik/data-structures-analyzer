@@ -2,7 +2,6 @@ import React from "react"
 
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node"
 import { json, useLoaderData } from "@remix-run/react"
-import { generateDatabase } from "../analyzer/generate-database"
 
 import {
   SplitView,
@@ -10,6 +9,8 @@ import {
   VisualizationCanvas,
   StepsPanel,
 } from "../components"
+import { db } from "../utils/db.server"
+import { AlgorithmData } from "../types"
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,12 +19,10 @@ export const meta: MetaFunction = () => {
   ]
 }
 
-const algorithms = await generateDatabase()
-
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const algorithm = algorithms.find(
-    (algorithm) => algorithm.id === params.algorithm
-  )
+  const algorithm = await db
+    .collection<AlgorithmData>("algorithms")
+    .findOne({ id: params.algorithm })
 
   return json({ algorithm })
 }
