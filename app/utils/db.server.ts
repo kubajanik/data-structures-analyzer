@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb"
 
-import { generateDatabase } from "../analyzer/generate-database"
+import { generateDatabase } from "~/analyzer/generate-database"
 
 const client = new MongoClient(process.env.DATABASE_URL ?? "")
 await client.connect().catch((err) => {

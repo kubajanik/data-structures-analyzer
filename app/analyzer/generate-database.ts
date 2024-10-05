@@ -5,7 +5,7 @@ import { fileURLToPath } from "url"
 import { debugAlgorithm } from "./debugger"
 import { transformDebugResult } from "./utils"
 
-import { AlgorithmData } from "../types"
+import { AlgorithmData } from "~/types"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

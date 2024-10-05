@@ -2,10 +2,9 @@ import type { MetaFunction } from "@remix-run/node"
 
 import { json, Link, Outlet, useLoaderData, useParams } from "@remix-run/react"
 
-import { Header } from "../components"
-
-import { db } from "../utils/db.server"
-import { AlgorithmData } from "../types"
+import { Header } from "~/components"
+import { AlgorithmData } from "~/types"
+import { db } from "~/utils/db.server"
 
 export const meta: MetaFunction = () => {
   return [

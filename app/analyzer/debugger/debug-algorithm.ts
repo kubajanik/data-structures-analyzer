@@ -1,7 +1,7 @@
 import childProcess from "node:child_process"
 import { readFile } from "node:fs/promises"
 
-import { InitialDebugResult, InitialDebugStep } from "../../types"
+import { InitialDebugResult, InitialDebugStep } from "~/types"
 
 import {
   addTypeofGuardsToVariables,

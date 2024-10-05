@@ -8,9 +8,9 @@ import {
   CodeViewer,
   VisualizationCanvas,
   StepsPanel,
-} from "../components"
-import { db } from "../utils/db.server"
-import { AlgorithmData } from "../types"
+} from "~/components"
+import { AlgorithmData } from "~/types"
+import { db } from "~/utils/db.server"
 
 export const meta: MetaFunction = () => {
   return [
