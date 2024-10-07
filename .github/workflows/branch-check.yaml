@@ -12,20 +12,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.6.0
       - name: Setup Node ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
       - name: Check types
-        run: pnpm run type-check
+        run: npm run type-check
       - name: Run unit tests
-        run: pnpm run unit-test
+        run: npm run unit-test
       - name: Build
-        run: pnpm run build
+        run: npm run build
