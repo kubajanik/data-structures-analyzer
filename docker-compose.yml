@@ -1,8 +1,28 @@
 services:
-  mongodb_container:
+  mongodb:
     image: mongo:latest
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    #   MONGO_INITDB_DATABASE: main
     ports:
       - 27017:27017
+    volumes:
+      - ./init.sh:/docker-entrypoint-initdb.d/init.sh:ro
+
+  analyzer:
+    build:
+      context: ./analyzer
+      dockerfile: Dockerfile
+    depends_on:
+      - mongodb
+
+  app:
+    build: .
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/main
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+      - analyzer

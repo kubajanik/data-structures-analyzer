@@ -1,14 +1,5 @@
-import { MongoClient } from "mongodb";
-
-// import { generateDatabase } from "~/analyzer/generate-database";
-
-console.log(process.env);
-const client = new MongoClient(process.env.MONGO_URI ?? "");
-client.connect().catch((err) => {
-  console.error("Failed to connect to database", err);
-});
-
-export const db = client.db("main");
+// import { generateDatabase } from "./analyzer/generate-database";
+// import { db } from "./utils/db.server";
 
 // (async () => {
 //   try {
