@@ -2,11 +2,11 @@
 
 export const Header = () => {
   return (
-    <header className="flex items-center justify-center gap-4 h-12 py-2 px-4 border-b border-neutral-100">
+    <header className="flex h-12 items-center justify-center gap-4 border-b border-neutral-100 px-4 py-2">
       {/* <img className="h-full" src={logo} alt="Logo" /> */}
-      <h1 className="text-sm text-neutral-500 font-mono">
+      <h1 className="font-mono text-sm text-neutral-500">
         Data Structures Analyzer
       </h1>
     </header>
-  )
-}
+  );
+};

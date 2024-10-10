@@ -1,3 +1,3 @@
-import { maxSum } from "./algorithm.js"
+import { maxSum } from "./algorithm.js";
 
-maxSum([5, 2, -1, 0, 3, 1, 2], 3)
+maxSum([5, 2, -1, 0, 3, 1, 2], 3);

@@ -1,9 +1,9 @@
-import { Button } from "../button"
+import { Button } from "../button";
 
 interface StepsPanelProps {
-  step: number
-  stepsCount: number
-  onStepChange: (step: number) => void
+  step: number;
+  stepsCount: number;
+  onStepChange: (step: number) => void;
 }
 
 export const StepsPanel = ({
@@ -12,7 +12,7 @@ export const StepsPanel = ({
   onStepChange,
 }: StepsPanelProps) => {
   return (
-    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-4">
+    <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-4">
       <Button onClick={() => onStepChange(0)} isDisabled={step === 0}>
         Reset
       </Button>
@@ -29,5 +29,5 @@ export const StepsPanel = ({
         Next step
       </Button>
     </div>
-  )
-}
+  );
+};

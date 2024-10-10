@@ -1,1 +1,1 @@
-export * from "./debug-algorithm"
+export * from "./debug-algorithm";

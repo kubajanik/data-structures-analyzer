@@ -1,1 +1,1 @@
-export * from "./array-item"
+export * from "./array-item";

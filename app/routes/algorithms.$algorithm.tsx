@@ -21,11 +21,9 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return data ? [
-    { title: `Data Structures Analyzer - ${data?.algorithm?.name ?? ''}` },
-  ] : [
-    { title: "Data Structures Analyzer - Algorithm Not Found" }
-  ];
+  return data
+    ? [{ title: `Data Structures Analyzer - ${data?.algorithm?.name ?? ""}` }]
+    : [{ title: "Data Structures Analyzer - Algorithm Not Found" }];
 };
 
 export default function AlgorithmRoute() {
@@ -37,7 +35,7 @@ export default function AlgorithmRoute() {
   }
 
   return (
-    <div className="flex w-full relative">
+    <div className="relative flex w-full">
       <SplitView
         leftComponent={
           <CodeViewer
