@@ -1,4 +1,5 @@
 {
   "name": "Middle of linked list",
-  "category": "linked-list"
+  "category": "linked-list",
+  "description": "Description of algorithm"
 }

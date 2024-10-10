@@ -12,18 +12,18 @@ import {
 import { AlgorithmData } from "~/types";
 import { db } from "~/utils/db.server";
 
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return data
+    ? [{ title: `Data Structures Analyzer - ${data?.algorithm?.name ?? ""}` }]
+    : [{ title: "Data Structures Analyzer - Algorithm Not Found" }];
+};
+
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const algorithm = await db
     .collection<AlgorithmData>("algorithms")
     .findOne({ id: params.algorithm });
 
   return json({ algorithm });
-};
-
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return data
-    ? [{ title: `Data Structures Analyzer - ${data?.algorithm?.name ?? ""}` }]
-    : [{ title: "Data Structures Analyzer - Algorithm Not Found" }];
 };
 
 export default function AlgorithmRoute() {
@@ -38,10 +38,17 @@ export default function AlgorithmRoute() {
     <div className="relative flex w-full">
       <SplitView
         leftComponent={
-          <CodeViewer
-            sourceCode={algorithm.sourceCode}
-            currentLine={algorithm.steps[currentStep].line}
-          />
+          <div className="flex h-full flex-col">
+            <div className="flex flex-col gap-2 border-b border-neutral-100 p-2 text-neutral-500">
+              <h1 className="font-medium">{algorithm.name}</h1>
+              <p className="text-xs font-light">{algorithm.description}</p>
+            </div>
+
+            <CodeViewer
+              sourceCode={algorithm.sourceCode}
+              currentLine={algorithm.steps[currentStep].line}
+            />
+          </div>
         }
         rightComponent={
           <VisualizationCanvas
