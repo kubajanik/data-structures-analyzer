@@ -18,7 +18,7 @@ export default function AlgorithmsLayout() {
   const { algorithms } = useLoaderData<typeof loader>();
 
   return (
-    <main className="flex h-screen flex-col font-mono">
+    <main className="flex h-screen flex-col">
       <Header />
 
       <div className="flex h-full border-neutral-200">
@@ -27,7 +27,7 @@ export default function AlgorithmsLayout() {
             {algorithms.map((algorithm) => (
               <li
                 key={algorithm.id}
-                className={`mt-2 rounded-sm px-3 py-1 text-xs text-neutral-500 ${algorithm.id === params.algorithm ? "bg-neutral-100 shadow-sm" : ""}`}
+                className={`mt-2 rounded-sm px-3 py-1 text-xs text-neutral-500 ${algorithm.id === params.algorithm ? "bg-blue-50 shadow-sm" : ""}`}
               >
                 <Link to={`/algorithms/${algorithm.id}`}>{algorithm.name}</Link>
               </li>

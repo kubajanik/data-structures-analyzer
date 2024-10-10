@@ -9,9 +9,12 @@ interface Props {
 
 export const CodeViewer = ({ sourceCode, currentLine }: Props) => {
   return (
-    <div className="relative h-full border border-r-0 border-neutral-100">
+    <div className="relative h-full border-neutral-100">
       <pre className="absolute top-0 w-full overflow-auto p-2 pl-8 text-xs">
-        <code dangerouslySetInnerHTML={{ __html: sourceCode }} />
+        <code
+          dangerouslySetInnerHTML={{ __html: sourceCode }}
+          className="font-mono"
+        />
       </pre>
 
       <LineHighlight sourceCode={sourceCode} currentLine={currentLine} />
@@ -27,7 +30,7 @@ const LineHighlight = ({ sourceCode, currentLine }: Props) => {
       {lineNumbers.map((line) => (
         <Fragment key={line}>
           <span
-            className={`inline-block w-full pl-2 text-neutral-500 ${currentLine === line ? "bg-neutral-100" : ""}`}
+            className={`inline-block w-full pl-2 text-neutral-500 ${currentLine === line ? "bg-blue-50" : ""}`}
           >
             <span className="inline-block w-3 text-right">{line}</span>
           </span>

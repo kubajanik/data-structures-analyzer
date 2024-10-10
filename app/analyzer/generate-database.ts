@@ -32,6 +32,7 @@ export async function generateDatabase() {
         id: metadata.name.split(" ").join("-").toLowerCase(),
         name: metadata.name,
         category: metadata.category,
+        description: metadata.description,
         ...debugResult,
       });
     }

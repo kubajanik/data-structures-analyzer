@@ -1,5 +1,6 @@
 {
   "name": "Insertion in array",
   "category": "array",
-  "indexes": ["i", "k"]
+  "indexes": ["i", "k"],
+  "description": "Description of algorithm"
 }

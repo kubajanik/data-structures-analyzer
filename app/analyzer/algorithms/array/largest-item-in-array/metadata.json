@@ -1,6 +1,6 @@
 {
-  "name": "Array max sum",
+  "name": "Largest element in array",
   "category": "array",
-  "indexes": ["i", "leftEdge"],
+  "indexes": ["i"],
   "description": "Description of algorithm"
 }
