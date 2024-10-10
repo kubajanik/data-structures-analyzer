@@ -1,23 +1,15 @@
-import type { MetaFunction } from "@remix-run/node"
-
 import { json, Link, Outlet, useLoaderData, useParams } from "@remix-run/react"
 
 import { Header } from "~/components"
 import { AlgorithmData } from "~/types"
 import { db } from "~/utils/db.server"
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ]
-}
-
 export const loader = async () => {
   const algorithms = await db
     .collection<AlgorithmData>("algorithms")
     .find()
     .toArray()
+    
   return json({ algorithms })
 }
 

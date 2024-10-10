@@ -1,4 +1,5 @@
 {
   "name": "Array binary search",
-  "category": "array"
+  "category": "array",
+  "indexes": ["low", "high", "mid"]
 }

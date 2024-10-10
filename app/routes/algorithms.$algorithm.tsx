@@ -12,19 +12,20 @@ import {
 import { AlgorithmData } from "~/types";
 import { db } from "~/utils/db.server";
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "Algorithm" },
-    { name: "description", content: "Algorithm view" },
-  ];
-};
-
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const algorithm = await db
     .collection<AlgorithmData>("algorithms")
     .findOne({ id: params.algorithm });
 
   return json({ algorithm });
+};
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return data ? [
+    { title: `Data Structures Analyzer - ${data?.algorithm?.name ?? ''}` },
+  ] : [
+    { title: "Data Structures Analyzer - Algorithm Not Found" }
+  ];
 };
 
 export default function AlgorithmRoute() {
