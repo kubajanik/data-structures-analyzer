@@ -37,6 +37,7 @@ export interface PrimitiveVariable {
 }
 
 export interface VisualisationItems {
+  id: string
   dataStructures: DataStructureVisualisation[];
   primitives: PrimitiveVariable[];
 }
@@ -56,4 +57,10 @@ export interface AlgorithmData extends DebugResult {
   id: string;
   name: string;
   category: string;
+}
+
+export interface AlgorithmMetadata {
+  name: string;
+  category: string;
+  indexes?: string[];
 }

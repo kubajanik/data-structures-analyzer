@@ -1,6 +1,7 @@
 import { randomUUID } from "crypto"
 
 import {
+  AlgorithmMetadata,
   DataStructureVisualisation,
   DebugResult,
   DebugStep,
@@ -61,7 +62,8 @@ function prepareSinglyLinkedList(
 }
 
 export function transformDebugResult(
-  debugResult: InitialDebugResult
+  debugResult: InitialDebugResult,
+  metadata: AlgorithmMetadata
 ): DebugResult {
   const steps: DebugStep[] = []
 
@@ -74,6 +76,7 @@ export function transformDebugResult(
     }
 
     const visualisationItems: VisualisationItems = {
+      id: randomUUID(),
       dataStructures: [],
       primitives: [],
     }
@@ -91,7 +94,7 @@ export function transformDebugResult(
           isUsedInCurrentLine: isVariableUsedInCurrentLine(
             currentStep.lineOfCode,
             name
-          ),
+          )
         }
       })
     visualisationItems.primitives = primitives
@@ -100,19 +103,16 @@ export function transformDebugResult(
       if (isPrimitive(value)) {
         // TODO: remove it
       } else if (Array.isArray(value)) {
-        const indexVariables = primitives.filter(({ name }) =>
-          /(low|high|mid|opposite|next|leftEdge|^i$)/i.test(name)
-        )
-
         const nodes: VisualisationNode[] = value.map((item, index) => ({
           type: "array-item",
           id: randomUUID().toString(),
           data: {
             value: item,
             index,
-            pointers: indexVariables
-              .filter(({ value }) => value === `${index}`)
-              .map(({ name }) => name),
+            pointers: primitives
+              .filter((primitive) => metadata.indexes?.includes(primitive.name))
+              .filter((primitive) => primitive.value === `${index}`)
+              .map((primitive) => primitive.name),
           },
           position: { x: index * (64 + 4), y: 0 },
         }))

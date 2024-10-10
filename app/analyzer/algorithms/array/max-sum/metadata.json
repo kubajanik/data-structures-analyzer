@@ -1,4 +1,5 @@
 {
   "name": "Array max sum",
-  "category": "array"
+  "category": "array",
+  "indexes": ["i", "leftEdge"]
 }
