@@ -37,7 +37,7 @@ export interface PrimitiveVariable {
 }
 
 export interface VisualisationItems {
-  id: string
+  id: string;
   dataStructures: DataStructureVisualisation[];
   primitives: PrimitiveVariable[];
 }

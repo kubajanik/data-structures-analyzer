@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect } from "react";
 
 interface SplitViewProps {
-  leftComponent: React.ReactNode
-  rightComponent: React.ReactNode
+  leftComponent: React.ReactNode;
+  rightComponent: React.ReactNode;
 }
 
 export const SplitView = ({
@@ -16,11 +16,11 @@ export const SplitView = ({
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     isResizing.current = true;
-  }
+  };
 
   const handleMouseUp = () => {
     isResizing.current = false;
-  }
+  };
 
   const handleMouseMove = (e: MouseEvent) => {
     if (containerRef.current && isResizing.current) {
@@ -36,19 +36,20 @@ export const SplitView = ({
     document.addEventListener("mouseup", handleMouseUp);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove)
-      document.removeEventListener("mouseup", handleMouseUp)
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
     };
   }, []);
 
   return (
-    <div ref={containerRef} className="flex w-full h-full">
+    <div ref={containerRef} className="flex h-full w-full">
       <div style={{ width: `${dividerPosition}%` }}>{leftComponent}</div>
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
         onMouseDown={handleMouseDown}
         className="w-1 cursor-col-resize bg-neutral-100"
       />
       <div style={{ width: `${100 - dividerPosition}%` }}>{rightComponent}</div>
     </div>
-  )
-}
+  );
+};

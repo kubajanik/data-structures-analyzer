@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto"
+import { randomUUID } from "crypto";
 
 import {
   AlgorithmMetadata,
@@ -13,27 +13,27 @@ import {
   VisualisationEdge,
   VisualisationItems,
   VisualisationNode,
-} from "~/types"
+} from "~/types";
 
-import { highlightSourceCode } from "./highlight"
-import { isVariableUsedInCurrentLine } from "./helpers"
+import { highlightSourceCode } from "./highlight";
+import { isVariableUsedInCurrentLine } from "./helpers";
 
 function isPrimitive(value: unknown): value is Primitive {
   if (typeof value == "object" || typeof value == "function") {
-    return false
+    return false;
   }
 
-  return true
+  return true;
 }
 
 function prepareSinglyLinkedList(
-  list: SinglyLinkedList
+  list: SinglyLinkedList,
 ): Omit<DataStructureVisualisation, "type" | "name"> {
-  const nodes: VisualisationNode[] = []
-  const edges: VisualisationEdge[] = []
+  const nodes: VisualisationNode[] = [];
+  const edges: VisualisationEdge[] = [];
 
-  let current: ListNode | undefined = list.head
-  let index = 0
+  let current: ListNode | undefined = list.head;
+  let index = 0;
 
   while (current) {
     nodes.push({
@@ -41,49 +41,49 @@ function prepareSinglyLinkedList(
       type: "list-node",
       data: { value: current.value, pointers: [] },
       position: { x: index * 200, y: 0 },
-    })
+    });
 
     if (current.next) {
-      const currentId = current.id
-      const nextId = current.next.id
+      const currentId = current.id;
+      const nextId = current.next.id;
 
       edges.push({
         id: `${currentId}-${nextId}`,
         source: currentId,
         target: nextId,
-      })
+      });
     }
 
-    current = current.next
-    index++
+    current = current.next;
+    index++;
   }
 
-  return { nodes, edges }
+  return { nodes, edges };
 }
 
 export function transformDebugResult(
   debugResult: InitialDebugResult,
-  metadata: AlgorithmMetadata
+  metadata: AlgorithmMetadata,
 ): DebugResult {
-  const steps: DebugStep[] = []
+  const steps: DebugStep[] = [];
 
-  debugResult.steps.shift()
+  debugResult.steps.shift();
 
   debugResult.steps.forEach((currentStep, index) => {
-    const nextStep = debugResult.steps[index + 1]
+    const nextStep = debugResult.steps[index + 1];
     if (!nextStep) {
-      return
+      return;
     }
 
     const visualisationItems: VisualisationItems = {
       id: randomUUID(),
       dataStructures: [],
       primitives: [],
-    }
+    };
 
     const variablesArray = Object.entries(nextStep.variables).map(
-      ([name, value]) => ({ name, value })
-    )
+      ([name, value]) => ({ name, value }),
+    );
 
     const primitives: PrimitiveVariable[] = variablesArray
       .filter((variable) => isPrimitive(variable.value))
@@ -93,11 +93,11 @@ export function transformDebugResult(
           value: value?.toString(),
           isUsedInCurrentLine: isVariableUsedInCurrentLine(
             currentStep.lineOfCode,
-            name
-          )
-        }
-      })
-    visualisationItems.primitives = primitives
+            name,
+          ),
+        };
+      });
+    visualisationItems.primitives = primitives;
 
     variablesArray.forEach(({ name, value }) => {
       if (isPrimitive(value)) {
@@ -115,22 +115,22 @@ export function transformDebugResult(
               .map((primitive) => primitive.name),
           },
           position: { x: index * (64 + 4), y: 0 },
-        }))
+        }));
         visualisationItems.dataStructures.push({
           name,
           type: "array",
           nodes,
           edges: [],
-        })
+        });
       } else {
-        const type = value._type
+        const type = value._type;
 
         if (type === "singly-linked-list") {
           visualisationItems.dataStructures.push({
             name,
             type,
             ...prepareSinglyLinkedList(value),
-          })
+          });
         } else if (type === "list-node") {
           visualisationItems.dataStructures =
             visualisationItems.dataStructures.map((x) => ({
@@ -144,22 +144,22 @@ export function transformDebugResult(
                         pointers: [...(y.data.pointers ?? []), name],
                       },
                     }
-                  : y
+                  : y,
               ),
-            }))
+            }));
         }
       }
-    })
+    });
 
     steps.push({
       line: currentStep.line,
       lineOfCode: currentStep.lineOfCode,
       visualisationItems,
-    })
-  })
+    });
+  });
 
   return {
     sourceCode: highlightSourceCode(debugResult.sourceCode),
     steps,
-  }
+  };
 }

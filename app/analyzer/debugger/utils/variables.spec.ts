@@ -1,9 +1,9 @@
-import { describe, expect, test } from "vitest"
+import { describe, expect, test } from "vitest";
 
 import {
   readVariablesFromSourceCode,
   addTypeofGuardsToVariables,
-} from "./variables"
+} from "./variables";
 
 describe("readVariablesFromSourceCode()", () => {
   const cases = [
@@ -65,15 +65,15 @@ describe("readVariablesFromSourceCode()", () => {
     `,
       variables: ["list", "value", "newNode", "last"],
     },
-  ]
+  ];
 
   test.each(cases)(
     "should return list of variable names from source code",
     ({ sourceCode, variables }) => {
-      expect(readVariablesFromSourceCode(sourceCode)).toEqual(variables)
-    }
-  )
-})
+      expect(readVariablesFromSourceCode(sourceCode)).toEqual(variables);
+    },
+  );
+});
 
 describe("addTypeofGuardsToVariables()", () => {
   test("should return variables with typeof guards", () => {
@@ -84,6 +84,6 @@ describe("addTypeofGuardsToVariables()", () => {
         "fast: typeof fast !== 'undefined' ? fast : undefined",
         "slow: typeof slow !== 'undefined' ? slow : undefined",
       ]
-    `)
-  })
-})
+    `);
+  });
+});

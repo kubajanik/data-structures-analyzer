@@ -1,7 +1,7 @@
 export function isVariableUsedInCurrentLine(
   line: string,
-  variable: string
+  variable: string,
 ): boolean {
-  const regex = new RegExp(`\\b${variable}\\b`)
-  return regex.test(line)
+  const regex = new RegExp(`\\b${variable}\\b`);
+  return regex.test(line);
 }

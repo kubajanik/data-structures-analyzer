@@ -1,15 +1,13 @@
-import type { MetaFunction } from "@remix-run/node"
+import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: "Data Structures Analyzer - Algorithms" },
-  ]
-}
+  return [{ title: "Data Structures Analyzer - Algorithms" }];
+};
 
 export default function AlgorithmsIndex() {
   return (
-    <div className="w-full grid place-items-center text-neutral-500 text-sm">
+    <div className="grid w-full place-items-center text-sm text-neutral-500">
       Pick algorithm
     </div>
-  )
+  );
 }

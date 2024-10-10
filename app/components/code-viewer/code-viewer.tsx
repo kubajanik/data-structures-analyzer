@@ -1,26 +1,26 @@
-import { Fragment } from "react"
+import { Fragment } from "react";
 
-import "highlight.js/styles/atom-one-light.css"
+import "highlight.js/styles/atom-one-light.css";
 
 interface Props {
-  sourceCode: string
-  currentLine: number
+  sourceCode: string;
+  currentLine: number;
 }
 
 export const CodeViewer = ({ sourceCode, currentLine }: Props) => {
   return (
-    <div className="h-full relative border border-neutral-100 border-r-0">
-      <pre className="absolute top-0 w-full p-2 pl-8 text-xs overflow-auto">
+    <div className="relative h-full border border-r-0 border-neutral-100">
+      <pre className="absolute top-0 w-full overflow-auto p-2 pl-8 text-xs">
         <code dangerouslySetInnerHTML={{ __html: sourceCode }} />
       </pre>
 
       <LineHighlight sourceCode={sourceCode} currentLine={currentLine} />
     </div>
-  )
-}
+  );
+};
 
 const LineHighlight = ({ sourceCode, currentLine }: Props) => {
-  const lineNumbers = getLineNumbers(sourceCode)
+  const lineNumbers = getLineNumbers(sourceCode);
 
   return (
     <pre className="pointer-events-none select-none py-2 text-xs">
@@ -35,9 +35,9 @@ const LineHighlight = ({ sourceCode, currentLine }: Props) => {
         </Fragment>
       ))}
     </pre>
-  )
-}
+  );
+};
 
 const getLineNumbers = (sourceCode: string): number[] => {
-  return sourceCode.split("\n").map((_, index) => index + 1)
-}
+  return sourceCode.split("\n").map((_, index) => index + 1);
+};

@@ -1,1 +1,1 @@
-export * from "./visualization-canvas"
+export * from "./visualization-canvas";

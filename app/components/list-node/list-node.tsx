@@ -1,4 +1,4 @@
-import { Handle, NodeProps, Position } from "reactflow"
+import { Handle, NodeProps, Position } from "reactflow";
 
 export const ListNode = ({
   data,
@@ -7,14 +7,14 @@ export const ListNode = ({
     <>
       <Handle type="source" position={Position.Right} className="opacity-0" />
 
-      <div className="relative grid place-content-center size-16 bg-blue-400 shadow-md rounded-lg text-blue-50 text-md">
+      <div className="text-md relative grid size-16 place-content-center rounded-lg bg-blue-400 text-blue-50 shadow-md">
         {data.value}
 
-        <div className="absolute bottom-16 left-0 flex flex-col gap-2 w-16 mb-2">
+        <div className="absolute bottom-16 left-0 mb-2 flex w-16 flex-col gap-2">
           {data.pointers?.map((pointer) => (
             <div
               key={pointer}
-              className="bg-neutral-100 text-neutral-500 shadow-md py-0.5 text-xs text-center rounded-md"
+              className="rounded-md bg-neutral-100 py-0.5 text-center text-xs text-neutral-500 shadow-md"
             >
               {pointer}
             </div>
@@ -24,5 +24,5 @@ export const ListNode = ({
 
       <Handle type="target" position={Position.Left} className="opacity-0" />
     </>
-  )
-}
+  );
+};

@@ -1,16 +1,16 @@
-import { PrimitiveVariable } from "~/types"
+import { PrimitiveVariable } from "~/types";
 
 interface VariablesTableProps {
-  primitives: PrimitiveVariable[]
+  primitives: PrimitiveVariable[];
 }
 
 export const VariablesTable = ({ primitives }: VariablesTableProps) => {
   if (!primitives.length) {
-    return null
+    return null;
   }
 
   return (
-    <div className="rounded-lg overflow-hidden shadow-md">
+    <div className="overflow-hidden rounded-lg shadow-md">
       <table className="text-xs">
         <thead>
           <tr className="bg-blue-400 text-blue-50">
@@ -22,7 +22,7 @@ export const VariablesTable = ({ primitives }: VariablesTableProps) => {
           {primitives.map(({ name, value, isUsedInCurrentLine }) => (
             <tr
               key={name}
-              className={`${isUsedInCurrentLine ? "bg-neutral-200" : "bg-neutral-100"} text-neutral-500 text-center`}
+              className={`${isUsedInCurrentLine ? "bg-neutral-200" : "bg-neutral-100"} text-center text-neutral-500`}
             >
               <td className="px-4 py-2">{name}</td>
               <td className="px-4 py-2">{value}</td>
@@ -31,5 +31,5 @@ export const VariablesTable = ({ primitives }: VariablesTableProps) => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};

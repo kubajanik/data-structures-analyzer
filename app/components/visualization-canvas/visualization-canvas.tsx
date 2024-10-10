@@ -4,19 +4,19 @@ import {
   MarkerType,
   NodeTypes,
   Panel,
-} from "reactflow"
-import "reactflow/dist/style.css"
+} from "reactflow";
+import "reactflow/dist/style.css";
 
-import { VisualisationItems } from "~/types"
+import { VisualisationItems } from "~/types";
 
-import { ListNode } from "../list-node"
-import { VariablesTable } from "../variables-table"
-import { ArrayItem } from "../array-item"
+import { ListNode } from "../list-node";
+import { VariablesTable } from "../variables-table";
+import { ArrayItem } from "../array-item";
 
 const nodeTypes: NodeTypes = {
   "list-node": ListNode,
   "array-item": ArrayItem,
-}
+};
 
 const defaultEdgeOptions: DefaultEdgeOptions = {
   type: "straight",
@@ -29,17 +29,17 @@ const defaultEdgeOptions: DefaultEdgeOptions = {
     strokeWidth: 2,
     stroke: "#d4d4d4",
   },
-}
+};
 
 interface VisualizationCanvasProps {
-  visualisationItems: VisualisationItems
+  visualisationItems: VisualisationItems;
 }
 
 export const VisualizationCanvas = ({
   visualisationItems,
 }: VisualizationCanvasProps) => {
-  const { id, dataStructures, primitives } = visualisationItems
-  const { nodes, edges } = dataStructures[0]
+  const { id, dataStructures, primitives } = visualisationItems;
+  const { nodes, edges } = dataStructures[0];
 
   return (
     <div className="h-full border border-neutral-100">
@@ -56,5 +56,5 @@ export const VisualizationCanvas = ({
         </Panel>
       </ReactFlow>
     </div>
-  )
-}
+  );
+};
