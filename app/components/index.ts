@@ -1,4 +1,5 @@
 export * from "./button";
+export * from "./link-button";
 export * from "./code-viewer";
 export * from "./header";
 export * from "./list-node";
