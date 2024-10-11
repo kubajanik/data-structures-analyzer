@@ -38,14 +38,13 @@ interface VisualizationCanvasProps {
 export const VisualizationCanvas = ({
   visualisationItems,
 }: VisualizationCanvasProps) => {
-  const { id, dataStructures, primitives } = visualisationItems;
+  const { dataStructures, primitives } = visualisationItems;
   const nodes = dataStructures.flatMap(({ nodes }) => nodes);
   const edges = dataStructures.flatMap(({ edges }) => edges);
 
   return (
     <div className="h-full">
       <ReactFlow
-        key={id}
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}

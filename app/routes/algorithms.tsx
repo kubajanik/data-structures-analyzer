@@ -1,4 +1,11 @@
-import { json, Link, Outlet, useLoaderData, useParams } from "@remix-run/react";
+import {
+  json,
+  Link,
+  Outlet,
+  ShouldRevalidateFunction,
+  useLoaderData,
+  useParams,
+} from "@remix-run/react";
 
 import { Header } from "~/components";
 import { AlgorithmData } from "~/types";
@@ -40,3 +47,5 @@ export default function AlgorithmsLayout() {
     </main>
   );
 }
+
+export const shouldRevalidate: ShouldRevalidateFunction = () => false;
