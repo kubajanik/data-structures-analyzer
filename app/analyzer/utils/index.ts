@@ -110,11 +110,19 @@ export function transformDebugResult(
             value: item,
             index,
             pointers: primitives
-              .filter((primitive) => metadata.indexes?.includes(primitive.name))
+              .filter((primitive) =>
+                Array.isArray(metadata.indexes)
+                  ? metadata.indexes?.includes(primitive.name)
+                  : metadata.indexes?.[name].includes(primitive.name),
+              )
               .filter((primitive) => primitive.value === `${index}`)
               .map((primitive) => primitive.name),
+            dataStructureName: name,
           },
-          position: { x: index * (64 + 4), y: 0 },
+          position: {
+            x: index * (64 + 4),
+            y: visualisationItems.dataStructures.length * 150,
+          },
         }));
         visualisationItems.dataStructures.push({
           name,

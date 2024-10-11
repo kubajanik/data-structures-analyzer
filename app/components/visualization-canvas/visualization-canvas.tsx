@@ -39,7 +39,8 @@ export const VisualizationCanvas = ({
   visualisationItems,
 }: VisualizationCanvasProps) => {
   const { id, dataStructures, primitives } = visualisationItems;
-  const { nodes, edges } = dataStructures[0];
+  const nodes = dataStructures.flatMap(({ nodes }) => nodes);
+  const edges = dataStructures.flatMap(({ edges }) => edges);
 
   return (
     <div className="h-full">
@@ -50,6 +51,8 @@ export const VisualizationCanvas = ({
         nodeTypes={nodeTypes}
         defaultEdgeOptions={defaultEdgeOptions}
         fitView
+        fitViewOptions={{ padding: 0.35 }}
+        panOnDrag={false}
       >
         <Panel position="top-right">
           <VariablesTable primitives={primitives} />

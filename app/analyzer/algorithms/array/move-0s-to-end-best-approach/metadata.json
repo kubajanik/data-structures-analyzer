@@ -1,0 +1,6 @@
+{
+  "name": "Move all zeros to end of array (best method)",
+  "category": "array",
+  "indexes": ["i", "count"],
+  "description": "Given an array of integers the task is to move all the zeros to the end of the array while maintaining the relative order of all non-zero elements."
+}

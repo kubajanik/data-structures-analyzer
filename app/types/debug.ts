@@ -18,7 +18,7 @@ export interface InitialDebugResult {
 }
 
 export type VisualisationNode = Pick<
-  Node<{ value: string; pointers?: string[] }>,
+  Node<{ value: string; pointers?: string[]; dataStructureName?: string }>,
   "id" | "type" | "position" | "data"
 >;
 export type VisualisationEdge = Pick<Edge, "source" | "target" | "id">;
@@ -64,5 +64,5 @@ export interface AlgorithmMetadata {
   name: string;
   category: string;
   description?: string;
-  indexes?: string[];
+  indexes?: string[] | Record<string, string[]>;
 }

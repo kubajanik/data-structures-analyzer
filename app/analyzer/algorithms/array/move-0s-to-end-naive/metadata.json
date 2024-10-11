@@ -1,0 +1,9 @@
+{
+  "name": "Move all zeros to end of array (naive method)",
+  "category": "array",
+  "indexes": {
+    "arr": ["i", "k"],
+    "temp": ["j", "k"]
+  },
+  "description": "Given an array of integers the task is to move all the zeros to the end of the array while maintaining the relative order of all non-zero elements."
+}
