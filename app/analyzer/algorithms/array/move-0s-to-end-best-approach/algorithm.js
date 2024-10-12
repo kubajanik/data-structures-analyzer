@@ -1,5 +1,4 @@
 export function pushZerosToEnd(arr) {
-  debugger;
   // Pointer to track the position for next non-zero element
   let count = 0;
 

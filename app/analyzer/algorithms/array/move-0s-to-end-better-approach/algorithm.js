@@ -1,5 +1,4 @@
 export function pushZerosToEnd(arr) {
-  debugger;
   // Count of non-zero elements
   let count = 0;
 

@@ -1,5 +1,4 @@
 export function segregate0and1(arr) {
-  debugger;
   // Counts the no of zeros in arr
   let count = 0;
 

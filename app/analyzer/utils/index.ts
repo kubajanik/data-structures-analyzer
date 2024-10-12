@@ -67,8 +67,6 @@ export function transformDebugResult(
 ): DebugResult {
   const steps: DebugStep[] = [];
 
-  debugResult.steps.shift();
-
   debugResult.steps.forEach((currentStep, index) => {
     const nextStep = debugResult.steps[index + 1];
     if (!nextStep) {

@@ -1,5 +1,4 @@
 export function maxSum(arr, k) {
-  debugger;
   let max = 0;
   let sum = 0;
 

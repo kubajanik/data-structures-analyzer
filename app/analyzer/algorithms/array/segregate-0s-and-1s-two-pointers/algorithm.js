@@ -1,5 +1,4 @@
 export function segregate0and1(arr) {
-  debugger;
   let left = 0;
   let right = arr.length - 1;
 

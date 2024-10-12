@@ -1,5 +1,4 @@
 export function pushZerosToEnd(arr) {
-  debugger;
   const n = arr.length;
   const temp = new Array(n);
 
