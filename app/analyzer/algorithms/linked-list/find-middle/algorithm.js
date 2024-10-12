@@ -1,5 +1,4 @@
 export function findMiddle(list) {
-  debugger;
   let fast = list.head;
   let slow = list.head;
 

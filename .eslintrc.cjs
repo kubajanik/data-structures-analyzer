@@ -80,13 +80,5 @@ module.exports = {
         node: true,
       },
     },
-
-    // Analyzer
-    {
-      files: ["**/algorithms/**/algorithm.*"],
-      rules: {
-        "no-debugger": "off",
-      },
-    },
   ],
 };

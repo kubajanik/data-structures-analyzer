@@ -27,6 +27,7 @@ export const debugAlgorithm = async (
     debugProcess.stdout?.on("data", (data: string) => {
       const isDebuggingStarted = data.includes("Break on start");
       if (isDebuggingStarted) {
+        debugProcess.stdin?.write("setBreakpoint()\n");
         debugProcess.stdin?.write("cont\n");
         return;
       }
