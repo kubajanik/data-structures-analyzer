@@ -1,6 +1,0 @@
-{
-  "name": "Array max sum",
-  "category": "array",
-  "indexes": ["i", "leftEdge"],
-  "description": "Description of algorithm"
-}

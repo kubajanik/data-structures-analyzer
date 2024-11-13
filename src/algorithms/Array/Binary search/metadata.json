@@ -1,0 +1,6 @@
+{
+  "name": "Array binary search",
+  "category": "array",
+  "indexes": ["low", "high", "mid"],
+  "description": "Binary search is an efficient algorithm for finding the position of a target value within a sorted array. It works by repeatedly dividing the search interval in half, which makes it much faster than linear search, especially for large datasets."
+}

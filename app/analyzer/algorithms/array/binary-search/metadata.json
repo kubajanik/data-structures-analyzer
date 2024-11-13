@@ -1,6 +1,0 @@
-{
-  "name": "Array binary search",
-  "category": "array",
-  "indexes": ["low", "high", "mid"],
-  "description": "Description of algorithm"
-}

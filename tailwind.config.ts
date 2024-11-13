@@ -1,14 +1,11 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['"Recursive"'],
-        mono: ['"Recursive"'],
-      },
-    },
-  },
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {},
   plugins: [],
 } satisfies Config;
